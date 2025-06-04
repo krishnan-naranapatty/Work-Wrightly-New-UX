@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import Header from "@/components/Header";
 import LeadHeader from "@/components/LeadHeader";
 import ActivityTimeline from "@/components/ActivityTimeline";
+import TimelineSidebar from "@/components/TimelineSidebar";
 
 const LeadDetails = () => {
   const { id } = useParams();
@@ -137,10 +138,20 @@ const LeadDetails = () => {
         </div>
       </div>
 
-      {/* Scrollable Timeline Content */}
-      <div className="flex-1 overflow-y-auto">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
-          <ActivityTimeline activities={activities} />
+      {/* Main Content with Sidebar */}
+      <div className="flex-1 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+          <div className="flex gap-6 h-full">
+            {/* Timeline Content - Scrollable */}
+            <div className="flex-1 overflow-y-auto pb-6">
+              <ActivityTimeline activities={activities} />
+            </div>
+
+            {/* Sticky Sidebar */}
+            <div className="sticky top-0 h-fit pt-6">
+              <TimelineSidebar activities={activities} />
+            </div>
+          </div>
         </div>
       </div>
     </div>
