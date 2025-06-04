@@ -1,7 +1,9 @@
 
-import { Search, Filter, Plus, Download, Settings, Upload } from "lucide-react";
+import { Search, Filter, Plus, Download, Settings, Upload, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Header = () => {
   return (
@@ -39,12 +41,37 @@ const Header = () => {
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
               <Input
                 placeholder="Search a lead..."
-                className="pl-10 w-48 bg-white"
+                className="pl-10 w-64 bg-white"
               />
             </div>
             <Button variant="ghost" size="icon" className="text-white hover:bg-slate-600">
               <Settings className="h-4 w-4" />
             </Button>
+            
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="text-white hover:bg-slate-600">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src="/placeholder.svg" />
+                    <AvatarFallback className="bg-slate-600 text-white">
+                      <User className="h-4 w-4" />
+                    </AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48 bg-white">
+                <DropdownMenuItem className="cursor-pointer">
+                  Profile Settings
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer">
+                  Account Settings
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className="cursor-pointer text-red-600">
+                  Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </div>
