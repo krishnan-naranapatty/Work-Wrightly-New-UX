@@ -110,7 +110,14 @@ const Index = () => {
         <StatsSection />
         <FilterSection />
 
-        <div className="flex gap-6">
+        {/* Desktop Layout - Side by side */}
+        <div className="hidden lg:flex gap-6">
+          <LeadsTable leads={filteredLeads} />
+          <RightSidebar />
+        </div>
+
+        {/* Mobile/Tablet Layout - Stacked */}
+        <div className="lg:hidden space-y-6">
           <LeadsTable leads={filteredLeads} />
           <RightSidebar />
         </div>
