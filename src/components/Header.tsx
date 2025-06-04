@@ -1,8 +1,9 @@
 
-import { Plus, Download, Settings, Upload, User } from "lucide-react";
+import { Plus, Download, Settings, Upload, User, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const Header = () => {
   return (
@@ -14,7 +15,9 @@ const Header = () => {
               <div className="text-lg font-bold leading-tight">WORK</div>
               <div className="text-lg font-bold leading-tight">WRIGHTLY</div>
             </div>
-            <nav className="flex space-x-6">
+            
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex space-x-6">
               <button className="text-white bg-blue-500 px-4 py-2 rounded text-sm">DASHBOARD</button>
               <button className="text-gray-300 hover:text-white text-sm">LEADS</button>
               <button className="text-gray-300 hover:text-white text-sm">ROLES</button>
@@ -24,6 +27,24 @@ const Header = () => {
           </div>
           
           <div className="flex items-center space-x-3">
+            {/* Mobile Hamburger Menu */}
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="md:hidden text-white hover:bg-slate-600">
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-64 bg-slate-700 border-slate-600">
+                <div className="flex flex-col space-y-4 mt-8">
+                  <button className="text-white bg-blue-500 px-4 py-3 rounded text-sm text-left">DASHBOARD</button>
+                  <button className="text-gray-300 hover:text-white text-sm px-4 py-3 text-left">LEADS</button>
+                  <button className="text-gray-300 hover:text-white text-sm px-4 py-3 text-left">ROLES</button>
+                  <button className="text-gray-300 hover:text-white text-sm px-4 py-3 text-left">MY TEAM</button>
+                  <button className="text-gray-300 hover:text-white text-sm px-4 py-3 text-left">SETTINGS</button>
+                </div>
+              </SheetContent>
+            </Sheet>
+            
             <Button className="bg-green-500 hover:bg-green-600 text-white">
               Add
             </Button>
