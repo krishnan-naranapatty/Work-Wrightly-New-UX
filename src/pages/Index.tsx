@@ -243,16 +243,6 @@ const Index = () => {
         <div className="fixed right-6 top-32 w-64 space-y-6">
           <Card>
             <CardContent className="p-4">
-              <div className="flex items-center space-x-2 text-blue-500 mb-2">
-                <span className="text-lg">📊</span>
-                <span className="text-sm font-medium">40% profile completeness</span>
-              </div>
-              <p className="text-xs text-gray-500">Add a picture to increase to 60%</p>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-4">
               <h3 className="font-medium text-gray-900 mb-3">Top Open Roles</h3>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
