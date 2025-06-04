@@ -7,7 +7,7 @@ const RightSidebar = () => {
     <div className="w-64 space-y-6 flex-shrink-0">
       <Card>
         <CardContent className="p-4">
-          <h3 className="font-medium text-gray-900 mb-3">Top Open Roles</h3>
+          <h3 className="font-medium text-gray-900 mb-3">Lead Status</h3>
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span>Lead Java Developer</span>
@@ -30,7 +30,7 @@ const RightSidebar = () => {
 
       <Card>
         <CardContent className="p-4">
-          <h3 className="font-medium text-gray-900 mb-3">My top team members</h3>
+          <h3 className="font-medium text-gray-900 mb-3">Payment Initiated</h3>
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
