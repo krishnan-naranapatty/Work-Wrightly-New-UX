@@ -1,6 +1,6 @@
-import { Search, Plus, Download, Settings, Upload, User } from "lucide-react";
+
+import { Plus, Download, Settings, Upload, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -33,13 +33,6 @@ const Header = () => {
             <Button variant="ghost" size="icon" className="text-white hover:bg-slate-600">
               <Download className="h-4 w-4" />
             </Button>
-            <div className="relative">
-              <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
-              <Input
-                placeholder="Search a lead..."
-                className="pl-10 w-64 bg-white"
-              />
-            </div>
             <Button variant="ghost" size="icon" className="text-white hover:bg-slate-600">
               <Settings className="h-4 w-4" />
             </Button>
