@@ -1,4 +1,3 @@
-
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import Header from "@/components/Header";
@@ -134,15 +133,11 @@ const LeadDetails = () => {
             </Link>
           </div>
 
-          {/* Lead Header with Timeline Summary */}
-          <div className="grid lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2">
-              <LeadHeader lead={lead} />
-            </div>
-            <div>
-              <TimelineSidebar activities={activities} showOnlyTimeline={true} />
-            </div>
-          </div>
+          {/* Lead Header */}
+          <LeadHeader lead={lead} />
+
+          {/* Timeline Summary - Horizontal */}
+          <TimelineSidebar activities={activities} showOnlyTimeline={true} />
 
           {/* Recent Activities */}
           <TimelineSidebar activities={activities} showOnlyRecent={true} />

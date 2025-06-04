@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Phone, MessageSquare, User, Store, CreditCard, Settings } from "lucide-react";
@@ -61,19 +62,19 @@ const TimelineSidebar = ({ activities, showOnlyTimeline = false, showOnlyRecent 
 
   if (showOnlyTimeline) {
     return (
-      <Card className="h-full flex flex-col">
-        <CardHeader className="p-6">
+      <Card>
+        <CardHeader>
           <CardTitle className="text-lg">Timeline Summary</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4 flex-1 p-6 pt-0">
+        <CardContent>
           <div>
             <h4 className="font-medium text-sm mb-3">Activity Count</h4>
-            <div className="grid grid-cols-1 gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
               {Object.entries(activityCounts).map(([type, count]) => (
-                <div key={type} className="flex items-center justify-between text-sm p-2 bg-gray-50 rounded">
-                  <div className="flex items-center space-x-2">
+                <div key={type} className="flex items-center justify-between text-sm p-3 bg-gray-50 rounded">
+                  <div className="flex flex-col items-center space-y-1">
                     {getActivityIcon(type)}
-                    <span className="capitalize">{type}</span>
+                    <span className="capitalize text-xs">{type}</span>
                   </div>
                   <span className="text-gray-500 font-medium">{count}</span>
                 </div>
