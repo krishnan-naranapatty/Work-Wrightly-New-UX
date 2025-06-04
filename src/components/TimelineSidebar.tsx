@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Phone, MessageSquare, User, Store, CreditCard, Settings } from "lucide-react";
@@ -61,11 +62,11 @@ const TimelineSidebar = ({ activities, showOnlyTimeline = false, showOnlyRecent 
 
   if (showOnlyTimeline) {
     return (
-      <Card>
+      <Card className="h-full">
         <CardHeader>
           <CardTitle className="text-lg">Timeline Summary</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 flex-1">
           <div>
             <h4 className="font-medium text-sm mb-3">Activity Count</h4>
             <div className="grid grid-cols-1 gap-3">

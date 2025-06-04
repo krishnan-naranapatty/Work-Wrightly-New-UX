@@ -27,9 +27,9 @@ interface LeadHeaderProps {
 
 const LeadHeader = ({ lead }: LeadHeaderProps) => {
   return (
-    <Card className="mb-6">
-      <CardHeader>
-        <div className="flex items-center justify-between">
+    <Card className="mb-6 h-full">
+      <CardHeader className="flex-1">
+        <div className="flex items-center justify-between h-full">
           <div className="flex items-center space-x-4">
             <Avatar className="h-16 w-16 bg-blue-100">
               <AvatarFallback className="bg-blue-600 text-white font-semibold text-lg">
