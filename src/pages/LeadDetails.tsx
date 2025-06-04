@@ -116,20 +116,32 @@ const LeadDetails = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <Header />
+    <div className="h-screen flex flex-col bg-gray-100">
+      {/* Sticky Header */}
+      <div className="sticky top-0 z-50">
+        <Header />
+      </div>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {/* Back Navigation */}
-        <div className="mb-6">
-          <Link to="/" className="inline-flex items-center text-blue-600 hover:text-blue-800">
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Dashboard
-          </Link>
-        </div>
+      {/* Sticky Lead Header Section */}
+      <div className="sticky top-[72px] z-40 bg-gray-100 pb-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+          {/* Back Navigation */}
+          <div className="mb-6">
+            <Link to="/" className="inline-flex items-center text-blue-600 hover:text-blue-800">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Dashboard
+            </Link>
+          </div>
 
-        <LeadHeader lead={lead} />
-        <ActivityTimeline activities={activities} />
+          <LeadHeader lead={lead} />
+        </div>
+      </div>
+
+      {/* Scrollable Timeline Content */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
+          <ActivityTimeline activities={activities} />
+        </div>
       </div>
     </div>
   );
