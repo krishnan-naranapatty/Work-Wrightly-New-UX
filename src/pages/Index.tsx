@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Search, Filter, Plus, Download, Settings, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -166,15 +167,15 @@ const Index = () => {
           </div>
           <div className="bg-blue-400 text-white p-4 rounded">
             <div className="text-2xl font-bold">12</div>
-            <div className="text-sm">open roles</div>
+            <div className="text-sm">Lead Closure</div>
           </div>
           <div className="bg-blue-300 text-white p-4 rounded">
             <div className="text-2xl font-bold">5</div>
-            <div className="text-sm">suitable leads</div>
+            <div className="text-sm">Payment Initiated</div>
           </div>
           <div className="bg-blue-600 text-white p-4 rounded">
             <div className="text-2xl font-bold">3</div>
-            <div className="text-sm">recent hires</div>
+            <div className="text-sm">Payment Completed</div>
           </div>
         </div>
 
