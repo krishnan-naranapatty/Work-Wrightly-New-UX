@@ -9,10 +9,10 @@ const FilterSection = () => {
     <div className="mb-4 flex items-center gap-3">
       <Select>
         <SelectTrigger className="w-48">
-          <SelectValue placeholder="View leads for all roles" />
+          <SelectValue placeholder="View leads for all users" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="all">View leads for all roles</SelectItem>
+          <SelectItem value="all">View leads for all users</SelectItem>
           <SelectItem value="developer">Developer roles</SelectItem>
           <SelectItem value="support">Support roles</SelectItem>
         </SelectContent>
