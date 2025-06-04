@@ -113,7 +113,10 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-8">
-              <h1 className="text-xl font-bold text-white">THEROX</h1>
+              <div className="text-white">
+                <div className="text-lg font-bold leading-tight">WORK</div>
+                <div className="text-lg font-bold leading-tight">WRIGHTLY</div>
+              </div>
               <nav className="flex space-x-6">
                 <button className="text-white bg-blue-500 px-4 py-2 rounded text-sm">DASHBOARD</button>
                 <button className="text-gray-300 hover:text-white text-sm">LEADS</button>
