@@ -240,7 +240,7 @@ const Index = () => {
         </Card>
 
         {/* Right Sidebar */}
-        <div className="fixed right-6 top-32 w-64 space-y-6">
+        <div className="fixed right-6 top-64 w-64 space-y-6">
           <Card>
             <CardContent className="p-4">
               <h3 className="font-medium text-gray-900 mb-3">Top Open Roles</h3>
