@@ -37,14 +37,14 @@ const RightSidebar = () => {
                 <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
                 <span className="text-sm">Adrian Robinson</span>
               </div>
-              <span className="text-xs text-gray-500">15 leads</span>
+              <span className="text-xs text-gray-500">Rs. 15,000</span>
             </div>
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
                 <span className="text-sm">Teddy Smith</span>
               </div>
-              <span className="text-xs text-gray-500">13 leads</span>
+              <span className="text-xs text-gray-500">Rs. 20,000</span>
             </div>
           </div>
           <Button className="w-full mt-3 bg-green-500 hover:bg-green-600 text-white text-sm">
