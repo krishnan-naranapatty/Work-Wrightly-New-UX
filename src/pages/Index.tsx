@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Header from "@/components/Header";
 import StatsSection from "@/components/StatsSection";
@@ -121,7 +120,6 @@ const Index = () => {
         {/* Mobile/Tablet Layout - Stacked */}
         <div className="lg:hidden space-y-6">
           <LeadsTable leads={filteredLeads} />
-          <RightSidebar />
         </div>
       </div>
     </div>
