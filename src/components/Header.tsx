@@ -20,7 +20,7 @@ const Header = () => {
             <nav className="hidden md:flex space-x-6">
               <button className="text-white bg-blue-500 px-4 py-2 rounded text-sm">DASHBOARD</button>
               <button className="text-gray-300 hover:text-white text-sm">LEADS</button>
-              <button className="text-gray-300 hover:text-white text-sm">ROLES</button>
+              <button className="text-gray-300 hover:text-white text-sm">USERS</button>
               <button className="text-gray-300 hover:text-white text-sm">MY TEAM</button>
               <button className="text-gray-300 hover:text-white text-sm">SETTINGS</button>
             </nav>
@@ -38,7 +38,7 @@ const Header = () => {
                 <div className="flex flex-col space-y-4 mt-8">
                   <button className="text-white bg-blue-500 px-4 py-3 rounded text-sm text-left">DASHBOARD</button>
                   <button className="text-gray-300 hover:text-white text-sm px-4 py-3 text-left">LEADS</button>
-                  <button className="text-gray-300 hover:text-white text-sm px-4 py-3 text-left">ROLES</button>
+                  <button className="text-gray-300 hover:text-white text-sm px-4 py-3 text-left">USERS</button>
                   <button className="text-gray-300 hover:text-white text-sm px-4 py-3 text-left">MY TEAM</button>
                   <button className="text-gray-300 hover:text-white text-sm px-4 py-3 text-left">SETTINGS</button>
                 </div>
