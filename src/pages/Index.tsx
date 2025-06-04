@@ -1,9 +1,11 @@
+
 import { useState } from "react";
 import Header from "@/components/Header";
 import StatsSection from "@/components/StatsSection";
 import FilterSection from "@/components/FilterSection";
 import LeadsTable from "@/components/LeadsTable";
 import SidebarCards from "@/components/SidebarCards";
+import RightSidebar from "@/components/RightSidebar";
 
 const Index = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -109,7 +111,18 @@ const Index = () => {
         <StatsSection />
         <SidebarCards />
         <FilterSection />
-        <LeadsTable leads={filteredLeads} />
+
+        {/* Desktop Layout - Side by side */}
+        <div className="hidden lg:flex gap-6">
+          <LeadsTable leads={filteredLeads} />
+          <RightSidebar />
+        </div>
+
+        {/* Mobile/Tablet Layout - Stacked */}
+        <div className="lg:hidden space-y-6">
+          <LeadsTable leads={filteredLeads} />
+          <RightSidebar />
+        </div>
       </div>
     </div>
   );

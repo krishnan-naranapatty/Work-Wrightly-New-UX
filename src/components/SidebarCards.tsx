@@ -12,7 +12,7 @@ const SidebarCards = () => {
   };
 
   return (
-    <div className="mb-6">
+    <div className="mb-6 md:hidden">
       <div className="flex justify-between items-center mb-3">
         <h2 className="text-lg font-semibold text-gray-900">Lead Information</h2>
         <Button
@@ -27,7 +27,7 @@ const SidebarCards = () => {
       </div>
       
       {isVisible && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           <Card>
             <CardContent className="p-4">
               <h3 className="font-medium text-gray-900 mb-3">Lead Stage</h3>
