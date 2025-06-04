@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Search, Filter, Plus, Download, Settings, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -201,9 +200,9 @@ const Index = () => {
               <CardContent className="p-0">
                 <div className="bg-gray-50 px-6 py-3 border-b">
                   <div className="grid grid-cols-12 gap-4 text-sm font-medium text-gray-600">
-                    <div className="col-span-3">Role</div>
-                    <div className="col-span-2">Suitability</div>
-                    <div className="col-span-7">Relationship</div>
+                    <div className="col-span-3">Lead Name</div>
+                    <div className="col-span-2">Lead Progress</div>
+                    <div className="col-span-7">Lead Details</div>
                   </div>
                 </div>
                 
