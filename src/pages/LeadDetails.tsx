@@ -1,3 +1,4 @@
+
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import Header from "@/components/Header";
@@ -122,8 +123,8 @@ const LeadDetails = () => {
         <Header />
       </div>
       
-      {/* Main Content - Scrollable */}
-      <div className="flex-1 overflow-y-auto">
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col overflow-hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
           {/* Back Navigation */}
           <div className="mb-6">
@@ -141,9 +142,13 @@ const LeadDetails = () => {
 
           {/* Recent Activities */}
           <TimelineSidebar activities={activities} showOnlyRecent={true} />
+        </div>
 
-          {/* Activity Timeline */}
-          <ActivityTimeline activities={activities} />
+        {/* Sticky Activity Timeline */}
+        <div className="flex-1 flex flex-col min-h-0">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <ActivityTimeline activities={activities} />
+          </div>
         </div>
       </div>
     </div>

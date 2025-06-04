@@ -18,12 +18,12 @@ interface ActivityTimelineProps {
 
 const ActivityTimeline = ({ activities }: ActivityTimelineProps) => {
   return (
-    <Card>
-      <CardHeader>
+    <Card className="flex flex-col h-full">
+      <CardHeader className="sticky top-0 bg-white z-10 border-b">
         <CardTitle>Activity Timeline</CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="space-y-6">
+      <CardContent className="flex-1 overflow-y-auto">
+        <div className="space-y-6 py-4">
           {activities.map((activity, index) => (
             <ActivityItem 
               key={activity.id} 
