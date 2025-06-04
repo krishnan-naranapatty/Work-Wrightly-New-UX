@@ -123,9 +123,9 @@ const LeadDetails = () => {
         <Header />
       </div>
       
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      {/* Sticky Lead Header */}
+      <div className="sticky top-16 z-40 bg-gray-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           {/* Back Navigation */}
           <div className="mb-6">
             <Link to="/" className="inline-flex items-center text-blue-600 hover:text-blue-800">
@@ -136,19 +136,20 @@ const LeadDetails = () => {
 
           {/* Lead Header */}
           <LeadHeader lead={lead} />
-
+        </div>
+      </div>
+      
+      {/* Scrollable Content */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
           {/* Timeline Summary - Horizontal */}
           <TimelineSidebar activities={activities} showOnlyTimeline={true} />
 
           {/* Recent Activities */}
           <TimelineSidebar activities={activities} showOnlyRecent={true} />
-        </div>
 
-        {/* Sticky Activity Timeline */}
-        <div className="flex-1 flex flex-col min-h-0">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <ActivityTimeline activities={activities} />
-          </div>
+          {/* Activity Timeline */}
+          <ActivityTimeline activities={activities} />
         </div>
       </div>
     </div>
