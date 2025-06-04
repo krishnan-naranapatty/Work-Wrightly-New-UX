@@ -7,18 +7,18 @@ const RightSidebar = () => {
     <div className="w-64 space-y-6 flex-shrink-0">
       <Card>
         <CardContent className="p-4">
-          <h3 className="font-medium text-gray-900 mb-3">Lead Status</h3>
+          <h3 className="font-medium text-gray-900 mb-3">Lead Stage</h3>
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
-              <span>Lead Java Developer</span>
+              <span>Not Interested</span>
               <span className="text-gray-500">23 leads</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span>Technical Support</span>
+              <span>Post Sale Process</span>
               <span className="text-gray-500">21 leads</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span>Sys Admin</span>
+              <span>Answered & Call Back</span>
               <span className="text-gray-500">16 leads</span>
             </div>
           </div>
