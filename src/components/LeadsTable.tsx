@@ -1,4 +1,5 @@
 
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -25,6 +26,8 @@ interface LeadsTableProps {
 }
 
 const LeadsTable = ({ leads }: LeadsTableProps) => {
+  const navigate = useNavigate();
+
   const getProgressValue = (priority: string) => {
     switch (priority) {
       case "high": return 80;
@@ -32,6 +35,10 @@ const LeadsTable = ({ leads }: LeadsTableProps) => {
       case "low": return 30;
       default: return 50;
     }
+  };
+
+  const handleLeadClick = (leadId: string) => {
+    navigate(`/lead/${leadId}`);
   };
 
   return (
@@ -51,7 +58,11 @@ const LeadsTable = ({ leads }: LeadsTableProps) => {
             const progressValue = getProgressValue(lead.priority);
             
             return (
-              <div key={lead.id} className="px-4 md:px-6 py-4 border-b hover:bg-gray-50">
+              <div 
+                key={lead.id} 
+                className="px-4 md:px-6 py-4 border-b hover:bg-gray-50 cursor-pointer transition-colors"
+                onClick={() => handleLeadClick(lead.id)}
+              >
                 {/* Desktop Layout */}
                 <div className="hidden md:grid grid-cols-12 gap-4 items-center">
                   <div className="col-span-3 flex items-center space-x-3">
