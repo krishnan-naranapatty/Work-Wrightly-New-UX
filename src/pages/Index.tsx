@@ -1,5 +1,6 @@
+
 import { useState } from "react";
-import { Search, Filter, Plus, Download, Settings } from "lucide-react";
+import { Search, Filter, Plus, Download, Settings, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -126,6 +127,15 @@ const Index = () => {
               <Button className="bg-green-500 hover:bg-green-600 text-white">
                 Add
               </Button>
+              <Button variant="ghost" size="icon" className="text-white hover:bg-slate-600">
+                <Upload className="h-4 w-4" />
+              </Button>
+              <Button variant="ghost" size="icon" className="text-white hover:bg-slate-600">
+                <Download className="h-4 w-4" />
+              </Button>
+              <Button variant="ghost" size="icon" className="text-white hover:bg-slate-600">
+                <Filter className="h-4 w-4" />
+              </Button>
               <div className="relative">
                 <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                 <Input
@@ -133,6 +143,9 @@ const Index = () => {
                   className="pl-10 w-48 bg-white"
                 />
               </div>
+              <Button variant="ghost" size="icon" className="text-white hover:bg-slate-600">
+                <Settings className="h-4 w-4" />
+              </Button>
             </div>
           </div>
         </div>
