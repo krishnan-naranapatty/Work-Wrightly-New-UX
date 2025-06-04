@@ -134,11 +134,18 @@ const LeadDetails = () => {
             </Link>
           </div>
 
-          {/* Lead Header */}
-          <LeadHeader lead={lead} />
+          {/* Lead Header with Timeline Summary */}
+          <div className="grid lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-2">
+              <LeadHeader lead={lead} />
+            </div>
+            <div>
+              <TimelineSidebar activities={activities} showOnlyTimeline={true} />
+            </div>
+          </div>
 
-          {/* Timeline Summary */}
-          <TimelineSidebar activities={activities} />
+          {/* Recent Activities */}
+          <TimelineSidebar activities={activities} showOnlyRecent={true} />
 
           {/* Activity Timeline */}
           <ActivityTimeline activities={activities} />
