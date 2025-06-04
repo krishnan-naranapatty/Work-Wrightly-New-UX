@@ -19,19 +19,19 @@ const TimelineSidebar = ({ activities }: TimelineSidebarProps) => {
   const getActivityIcon = (type: string) => {
     switch (type) {
       case "phone":
-        return <Phone className="h-3 w-3" />;
+        return <Phone className="h-4 w-4" />;
       case "message":
-        return <MessageSquare className="h-3 w-3" />;
+        return <MessageSquare className="h-4 w-4" />;
       case "lead":
-        return <User className="h-3 w-3" />;
+        return <User className="h-4 w-4" />;
       case "store":
-        return <Store className="h-3 w-3" />;
+        return <Store className="h-4 w-4" />;
       case "payment":
-        return <CreditCard className="h-3 w-3" />;
+        return <CreditCard className="h-4 w-4" />;
       case "process":
-        return <Settings className="h-3 w-3" />;
+        return <Settings className="h-4 w-4" />;
       default:
-        return <Settings className="h-3 w-3" />;
+        return <Settings className="h-4 w-4" />;
     }
   };
 
@@ -59,22 +59,22 @@ const TimelineSidebar = ({ activities }: TimelineSidebarProps) => {
   const recentActivities = activities.slice(0, 5);
 
   return (
-    <div className="w-80 space-y-4">
+    <div className="grid md:grid-cols-2 gap-4">
       <Card>
         <CardHeader>
           <CardTitle className="text-lg">Timeline Summary</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <h4 className="font-medium text-sm mb-2">Activity Count</h4>
-            <div className="space-y-2">
+            <h4 className="font-medium text-sm mb-3">Activity Count</h4>
+            <div className="grid grid-cols-2 gap-3">
               {Object.entries(activityCounts).map(([type, count]) => (
-                <div key={type} className="flex items-center justify-between text-sm">
+                <div key={type} className="flex items-center justify-between text-sm p-2 bg-gray-50 rounded">
                   <div className="flex items-center space-x-2">
                     {getActivityIcon(type)}
                     <span className="capitalize">{type}</span>
                   </div>
-                  <span className="text-gray-500">{count}</span>
+                  <span className="text-gray-500 font-medium">{count}</span>
                 </div>
               ))}
             </div>
@@ -89,10 +89,10 @@ const TimelineSidebar = ({ activities }: TimelineSidebarProps) => {
         <CardContent>
           <div className="space-y-3">
             {recentActivities.map((activity) => (
-              <div key={activity.id} className="space-y-1">
+              <div key={activity.id} className="space-y-1 p-2 bg-gray-50 rounded">
                 <div className="flex items-center space-x-2">
                   {getActivityIcon(activity.type)}
-                  <span className="text-sm font-medium truncate">{activity.type}</span>
+                  <span className="text-sm font-medium truncate capitalize">{activity.type}</span>
                 </div>
                 <Badge className={`${getStatusColor(activity.status)} text-xs`}>
                   {activity.status}
