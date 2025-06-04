@@ -4,7 +4,7 @@ import { Search, Filter, Plus, Download, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import LeadCard from "@/components/LeadCard";
 import StatsCards from "@/components/StatsCards";
@@ -107,27 +107,33 @@ const Index = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gray-100">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
+      <div className="bg-slate-700 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-4">
-              <h1 className="text-2xl font-bold text-gray-900">Lead Management</h1>
-              <Badge variant="secondary" className="bg-blue-100 text-blue-800">
-                {filteredLeads.length} Leads
-              </Badge>
+            <div className="flex items-center space-x-8">
+              <h1 className="text-xl font-bold text-white">THEROX</h1>
+              <nav className="flex space-x-6">
+                <button className="text-white bg-blue-500 px-4 py-2 rounded text-sm">DASHBOARD</button>
+                <button className="text-gray-300 hover:text-white text-sm">LEADS</button>
+                <button className="text-gray-300 hover:text-white text-sm">ROLES</button>
+                <button className="text-gray-300 hover:text-white text-sm">MY TEAM</button>
+                <button className="text-gray-300 hover:text-white text-sm">SETTINGS</button>
+              </nav>
             </div>
             
             <div className="flex items-center space-x-3">
-              <Button variant="outline" size="sm" className="hidden sm:flex">
-                <Download className="h-4 w-4 mr-2" />
-                Export
+              <Button className="bg-green-500 hover:bg-green-600 text-white">
+                Add
               </Button>
-              <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
-                <Plus className="h-4 w-4 mr-2" />
-                Add Lead
-              </Button>
+              <div className="relative">
+                <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                <Input
+                  placeholder="Search a lead..."
+                  className="pl-10 w-48 bg-white"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -135,70 +141,164 @@ const Index = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {/* Stats Cards */}
-        <StatsCards leads={leads} />
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+          <div className="bg-green-500 text-white p-4 rounded">
+            <div className="text-2xl font-bold">23 ▲</div>
+            <div className="text-sm">new leads</div>
+          </div>
+          <div className="bg-blue-500 text-white p-4 rounded">
+            <div className="text-2xl font-bold">3829</div>
+            <div className="text-sm">total leads</div>
+          </div>
+          <div className="bg-blue-400 text-white p-4 rounded">
+            <div className="text-2xl font-bold">12</div>
+            <div className="text-sm">open roles</div>
+          </div>
+          <div className="bg-blue-300 text-white p-4 rounded">
+            <div className="text-2xl font-bold">5</div>
+            <div className="text-sm">suitable leads</div>
+          </div>
+          <div className="bg-blue-600 text-white p-4 rounded">
+            <div className="text-2xl font-bold">3</div>
+            <div className="text-sm">recent hires</div>
+          </div>
+        </div>
 
-        {/* Search and Filters */}
-        <Card className="mb-6">
-          <CardContent className="pt-6">
-            <div className="flex flex-col sm:flex-row gap-4">
-              <div className="flex-1 relative">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                <Input
-                  placeholder="Search leads by name, company, or email..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
+        {/* Filters */}
+        <div className="mb-4">
+          <Select>
+            <SelectTrigger className="w-48">
+              <SelectValue placeholder="View leads for all roles" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">View leads for all roles</SelectItem>
+              <SelectItem value="developer">Developer roles</SelectItem>
+              <SelectItem value="support">Support roles</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        {/* Leads Table */}
+        <Card>
+          <CardContent className="p-0">
+            <div className="bg-gray-50 px-6 py-3 border-b">
+              <div className="grid grid-cols-12 gap-4 text-sm font-medium text-gray-600">
+                <div className="col-span-3">Role</div>
+                <div className="col-span-2">Suitability</div>
+                <div className="col-span-7">Relationship</div>
               </div>
-              
-              <Select value={selectedStatus} onValueChange={setSelectedStatus}>
-                <SelectTrigger className="w-full sm:w-48">
-                  <SelectValue placeholder="Filter by status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Status</SelectItem>
-                  <SelectItem value="In Progress">In Progress</SelectItem>
-                  <SelectItem value="Completed">Completed</SelectItem>
-                  <SelectItem value="Pending">Pending</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <Button
-                variant="outline"
-                onClick={() => setShowFilters(!showFilters)}
-                className="w-full sm:w-auto"
-              >
-                <Filter className="h-4 w-4 mr-2" />
-                Filters
+            </div>
+            
+            {filteredLeads.map((lead) => (
+              <div key={lead.id} className="px-6 py-4 border-b hover:bg-gray-50">
+                <div className="grid grid-cols-12 gap-4 items-center">
+                  <div className="col-span-3 flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                      {lead.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                    </div>
+                    <div>
+                      <div className="font-medium text-gray-900">{lead.name}</div>
+                      <div className="text-sm text-gray-500">last contact: {lead.updatedAt}</div>
+                    </div>
+                  </div>
+                  
+                  <div className="col-span-2">
+                    <div className="flex items-center space-x-1">
+                      <div className="flex">
+                        {[1,2,3,4,5].map((star) => (
+                          <span key={star} className="text-green-500">★</span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="text-sm text-gray-500">{lead.priority === "high" ? "80%" : "60%"} progress</div>
+                  </div>
+                  
+                  <div className="col-span-7">
+                    <div className="grid grid-cols-4 gap-4 text-sm">
+                      <div>
+                        <div className="text-gray-500">Messages (9)</div>
+                        <div className="text-gray-500">Phone (2)</div>
+                        <div className="text-gray-500">Live meeting (1)</div>
+                        <div className="text-gray-500">Notes (3)</div>
+                      </div>
+                      <div className="col-span-3">
+                        <div className="text-gray-900">{lead.stage}</div>
+                        <div className="text-sm text-gray-500">{lead.assignedTo}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+            
+            <div className="p-6 text-center">
+              <Button className="bg-blue-500 hover:bg-blue-600 text-white">
+                SHOW MORE LEADS
               </Button>
             </div>
-
-            {showFilters && (
-              <div className="mt-4 pt-4 border-t">
-                <FilterPanel />
-              </div>
-            )}
           </CardContent>
         </Card>
 
-        {/* Leads Grid */}
-        <div className="grid gap-4">
-          {filteredLeads.map((lead) => (
-            <LeadCard key={lead.id} lead={lead} />
-          ))}
-        </div>
-
-        {filteredLeads.length === 0 && (
+        {/* Right Sidebar */}
+        <div className="fixed right-6 top-32 w-64 space-y-6">
           <Card>
-            <CardContent className="py-12 text-center">
-              <div className="text-gray-500">
-                <Search className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-                <h3 className="text-lg font-medium mb-2">No leads found</h3>
-                <p>Try adjusting your search criteria or add a new lead.</p>
+            <CardContent className="p-4">
+              <div className="flex items-center space-x-2 text-blue-500 mb-2">
+                <span className="text-lg">📊</span>
+                <span className="text-sm font-medium">40% profile completeness</span>
               </div>
+              <p className="text-xs text-gray-500">Add a picture to increase to 60%</p>
             </CardContent>
           </Card>
-        )}
+
+          <Card>
+            <CardContent className="p-4">
+              <h3 className="font-medium text-gray-900 mb-3">Top Open Roles</h3>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span>Lead Java Developer</span>
+                  <span className="text-gray-500">23 leads</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span>Technical Support</span>
+                  <span className="text-gray-500">21 leads</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span>Sys Admin</span>
+                  <span className="text-gray-500">16 leads</span>
+                </div>
+              </div>
+              <Button className="w-full mt-3 bg-green-500 hover:bg-green-600 text-white text-sm">
+                Add a new role
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-4">
+              <h3 className="font-medium text-gray-900 mb-3">My top team members</h3>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
+                    <span className="text-sm">Adrian Robinson</span>
+                  </div>
+                  <span className="text-xs text-gray-500">15 leads</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
+                    <span className="text-sm">Teddy Smith</span>
+                  </div>
+                  <span className="text-xs text-gray-500">13 leads</span>
+                </div>
+              </div>
+              <Button className="w-full mt-3 bg-green-500 hover:bg-green-600 text-white text-sm">
+                Invite a new member
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );
