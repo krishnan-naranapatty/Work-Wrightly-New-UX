@@ -5,9 +5,11 @@ import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 
 const Forms = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   const forms = [
     { id: 1, name: "Lead Form V3", type: "lead" },
@@ -45,6 +47,10 @@ const Forms = () => {
   const filteredForms = forms.filter(form =>
     form.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  
+  const handleCardClick = () => {
+    navigate('/');
+  };
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -83,7 +89,11 @@ const Forms = () => {
         {/* Forms Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredForms.map((form) => (
-            <Card key={form.id} className="hover:shadow-md transition-shadow cursor-pointer bg-white">
+            <Card 
+              key={form.id} 
+              className="hover:shadow-md transition-shadow cursor-pointer bg-white"
+              onClick={handleCardClick}
+            >
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
@@ -95,6 +105,7 @@ const Forms = () => {
                     variant="ghost" 
                     size="icon" 
                     className="text-gray-400 hover:text-red-500 hover:bg-red-50"
+                    onClick={(e) => e.stopPropagation()} // Prevent card click when delete button is clicked
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
