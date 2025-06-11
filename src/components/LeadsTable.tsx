@@ -132,9 +132,9 @@ const LeadsTable = ({ leads }: LeadsTableProps) => {
           {/* Desktop Header */}
           <div className="bg-gray-50 px-6 py-3 border-b hidden md:block">
             <div className="grid grid-cols-12 gap-4 text-sm font-medium text-gray-600">
-              <div className="col-span-3">Lead Name</div>
+              <div className="col-span-4">Lead Name</div>
               <div className="col-span-2">Lead Progress</div>
-              <div className="col-span-7">Lead Details</div>
+              <div className="col-span-6">Lead Details</div>
             </div>
           </div>
           
@@ -150,22 +150,22 @@ const LeadsTable = ({ leads }: LeadsTableProps) => {
               >
                 {/* Desktop Layout */}
                 <div className="hidden md:grid grid-cols-12 gap-4 items-center">
-                  <div className="col-span-3 flex items-center space-x-3 min-h-[80px]">
+                  <div className="col-span-4 flex items-center space-x-3 min-h-[80px]">
                     <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
                       {lead.name.split(' ').map(n => n[0]).join('').toUpperCase()}
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="font-medium text-gray-900 truncate">
-                        <TruncatedText text={lead.name} maxLength={15} />
+                        <TruncatedText text={lead.name} maxLength={20} />
                       </div>
                       <div className="text-sm text-gray-500 truncate">
-                        <TruncatedText text={lead.email} maxLength={20} />
+                        <TruncatedText text={lead.email} maxLength={25} />
                       </div>
                       <div className="text-sm text-gray-500 truncate">
-                        <TruncatedText text={lead.phone} maxLength={12} />
+                        <TruncatedText text={lead.phone} maxLength={15} />
                       </div>
                       <div className="text-sm text-gray-500 truncate">
-                        <TruncatedText text={lead.city} maxLength={10} />
+                        <TruncatedText text={lead.city} maxLength={15} />
                       </div>
                       <div className="text-sm text-gray-500 truncate">
                         last contact: {lead.updatedAt}
@@ -183,7 +183,7 @@ const LeadsTable = ({ leads }: LeadsTableProps) => {
                     <div className="text-sm text-gray-500 mt-1">{progressValue}% progress</div>
                   </div>
                   
-                  <div className="col-span-7">
+                  <div className="col-span-6">
                     <div className="grid grid-cols-4 gap-4 text-sm">
                       <div>
                         <div className="text-gray-500">Messages (9)</div>
