@@ -1,24 +1,63 @@
+
 import { Menu, Settings, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const isActive = (path: string) => location.pathname === path;
+
+  const handleNavigation = (path: string) => {
+    navigate(path);
+  };
+
   return (
     <div className="bg-slate-700 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center space-x-8">
-            <div className="text-white">
+            <div className="text-white cursor-pointer" onClick={() => navigate("/")}>
               <div className="text-lg font-bold leading-tight">WORK</div>
               <div className="text-lg font-bold leading-tight">WRIGHTLY</div>
             </div>
             
             {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-6">
-              <button className="text-white bg-blue-500 px-4 py-2 rounded text-sm">DASHBOARD</button>
-              <button className="text-gray-300 hover:text-white text-sm">LEADS</button>
+              <button 
+                onClick={() => handleNavigation("/")}
+                className={`px-4 py-2 rounded text-sm ${
+                  isActive("/") 
+                    ? "text-white bg-blue-500" 
+                    : "text-gray-300 hover:text-white"
+                }`}
+              >
+                DASHBOARD
+              </button>
+              <button 
+                onClick={() => handleNavigation("/leads")}
+                className={`px-4 py-2 rounded text-sm ${
+                  isActive("/leads") 
+                    ? "text-white bg-blue-500" 
+                    : "text-gray-300 hover:text-white"
+                }`}
+              >
+                LEADS
+              </button>
+              <button 
+                onClick={() => handleNavigation("/forms")}
+                className={`px-4 py-2 rounded text-sm ${
+                  isActive("/forms") 
+                    ? "text-white bg-blue-500" 
+                    : "text-gray-300 hover:text-white"
+                }`}
+              >
+                FORMS
+              </button>
               <button className="text-gray-300 hover:text-white text-sm">USERS</button>
               <button className="text-gray-300 hover:text-white text-sm">MY TEAM</button>
               <button className="text-gray-300 hover:text-white text-sm">SETTINGS</button>
@@ -35,8 +74,36 @@ const Header = () => {
               </SheetTrigger>
               <SheetContent side="left" className="w-64 bg-slate-700 border-slate-600">
                 <div className="flex flex-col space-y-4 mt-8">
-                  <button className="text-white bg-blue-500 px-4 py-3 rounded text-sm text-left">DASHBOARD</button>
-                  <button className="text-gray-300 hover:text-white text-sm px-4 py-3 text-left">LEADS</button>
+                  <button 
+                    onClick={() => handleNavigation("/")}
+                    className={`px-4 py-3 rounded text-sm text-left ${
+                      isActive("/") 
+                        ? "text-white bg-blue-500" 
+                        : "text-gray-300 hover:text-white"
+                    }`}
+                  >
+                    DASHBOARD
+                  </button>
+                  <button 
+                    onClick={() => handleNavigation("/leads")}
+                    className={`px-4 py-3 rounded text-sm text-left ${
+                      isActive("/leads") 
+                        ? "text-white bg-blue-500" 
+                        : "text-gray-300 hover:text-white"
+                    }`}
+                  >
+                    LEADS
+                  </button>
+                  <button 
+                    onClick={() => handleNavigation("/forms")}
+                    className={`px-4 py-3 rounded text-sm text-left ${
+                      isActive("/forms") 
+                        ? "text-white bg-blue-500" 
+                        : "text-gray-300 hover:text-white"
+                    }`}
+                  >
+                    FORMS
+                  </button>
                   <button className="text-gray-300 hover:text-white text-sm px-4 py-3 text-left">USERS</button>
                   <button className="text-gray-300 hover:text-white text-sm px-4 py-3 text-left">MY TEAM</button>
                   <button className="text-gray-300 hover:text-white text-sm px-4 py-3 text-left">SETTINGS</button>
