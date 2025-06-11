@@ -4,9 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-const FilterSection = () => {
+interface FilterSectionProps {
+  className?: string;
+}
+
+const FilterSection = ({ className = "" }: FilterSectionProps) => {
   return (
-    <div className="mb-4 flex items-center gap-3">
+    <div className={`flex flex-wrap items-center gap-3 ${className}`}>
       <Select>
         <SelectTrigger className="w-48">
           <SelectValue placeholder="View leads for all users" />

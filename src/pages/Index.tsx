@@ -112,19 +112,22 @@ const Index = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <StatsSection />
         <SidebarCards />
-        <FilterSection />
-
-        {/* Action buttons above the table */}
-        <div className="mb-4 flex flex-wrap gap-2">
-          <Button className="bg-green-500 hover:bg-green-600 text-white">
-            <Plus className="mr-1 h-4 w-4" /> Add
-          </Button>
-          <Button variant="outline" className="bg-white">
-            <Upload className="mr-1 h-4 w-4" /> Upload
-          </Button>
-          <Button variant="outline" className="bg-white">
-            <Download className="mr-1 h-4 w-4" /> Download
-          </Button>
+        
+        {/* Combined filter section and action buttons */}
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+          <FilterSection className="flex-grow" />
+          
+          <div className="flex flex-wrap gap-2">
+            <Button className="bg-green-500 hover:bg-green-600 text-white">
+              <Plus className="mr-1 h-4 w-4" /> Add
+            </Button>
+            <Button variant="outline" className="bg-white">
+              <Upload className="mr-1 h-4 w-4" /> Upload
+            </Button>
+            <Button variant="outline" className="bg-white">
+              <Download className="mr-1 h-4 w-4" /> Download
+            </Button>
+          </div>
         </div>
 
         {/* Desktop Layout - Side by side */}
