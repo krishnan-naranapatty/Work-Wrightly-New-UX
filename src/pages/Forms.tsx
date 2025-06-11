@@ -1,10 +1,11 @@
 
 import { useState } from "react";
-import { Search, Plus, Trash2 } from "lucide-react";
+import { Search, Plus, Trash2, Star } from "lucide-react";
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 
 const Forms = () => {
@@ -12,36 +13,36 @@ const Forms = () => {
   const navigate = useNavigate();
 
   const forms = [
-    { id: 1, name: "Lead Form V3", type: "lead" },
-    { id: 2, name: "Lead Form v2", type: "lead" },
-    { id: 3, name: "Commercial Invoice for Others", type: "invoice" },
-    { id: 4, name: "Create Store", type: "store" },
-    { id: 5, name: "Customer Survey", type: "survey" },
-    { id: 6, name: "Product Training Scheduled Rescheduled", type: "training" },
-    { id: 7, name: "Post Sales Approval", type: "sales" },
-    { id: 8, name: "Store Created", type: "store" },
-    { id: 9, name: "Answered Callback", type: "callback" },
-    { id: 10, name: "Demo Completed v2", type: "demo" },
-    { id: 11, name: "Demo Scheduled v2", type: "demo" },
-    { id: 12, name: "Phone call activity v2", type: "activity" },
-    { id: 13, name: "Payment Initiated others", type: "payment" },
-    { id: 14, name: "Commercial Invoice", type: "invoice" },
-    { id: 15, name: "Proforma Invoice", type: "invoice" },
-    { id: 16, name: "Not Interested", type: "status" },
-    { id: 17, name: "Callback Requested", type: "callback" },
-    { id: 18, name: "Lead Form", type: "lead" },
-    { id: 19, name: "Junk", type: "status" },
-    { id: 20, name: "Whatsapp Campaign", type: "campaign" },
-    { id: 21, name: "Junk or Invalid lead", type: "status" },
-    { id: 22, name: "Sales activity form", type: "sales" },
-    { id: 23, name: "Purchase follow up", type: "purchase" },
-    { id: 24, name: "Payment awaited", type: "payment" },
-    { id: 25, name: "Demo completed", type: "demo" },
-    { id: 26, name: "Demo scheduled", type: "demo" },
-    { id: 27, name: "Website completed", type: "website" },
-    { id: 28, name: "Free trial website designing", type: "website" },
-    { id: 29, name: "Catalogue received", type: "catalogue" },
-    { id: 30, name: "Phone call activity", type: "activity" }
+    { id: 1, name: "Lead Form V3", type: "lead", itemCount: 245, isDefault: true },
+    { id: 2, name: "Lead Form v2", type: "lead", itemCount: 189, isDefault: false },
+    { id: 3, name: "Commercial Invoice for Others", type: "invoice", itemCount: 67, isDefault: false },
+    { id: 4, name: "Create Store", type: "store", itemCount: 23, isDefault: false },
+    { id: 5, name: "Customer Survey", type: "survey", itemCount: 156, isDefault: false },
+    { id: 6, name: "Product Training Scheduled Rescheduled", type: "training", itemCount: 34, isDefault: false },
+    { id: 7, name: "Post Sales Approval", type: "sales", itemCount: 89, isDefault: false },
+    { id: 8, name: "Store Created", type: "store", itemCount: 45, isDefault: false },
+    { id: 9, name: "Answered Callback", type: "callback", itemCount: 78, isDefault: false },
+    { id: 10, name: "Demo Completed v2", type: "demo", itemCount: 112, isDefault: false },
+    { id: 11, name: "Demo Scheduled v2", type: "demo", itemCount: 203, isDefault: false },
+    { id: 12, name: "Phone call activity v2", type: "activity", itemCount: 167, isDefault: false },
+    { id: 13, name: "Payment Initiated others", type: "payment", itemCount: 56, isDefault: false },
+    { id: 14, name: "Commercial Invoice", type: "invoice", itemCount: 134, isDefault: false },
+    { id: 15, name: "Proforma Invoice", type: "invoice", itemCount: 89, isDefault: false },
+    { id: 16, name: "Not Interested", type: "status", itemCount: 298, isDefault: false },
+    { id: 17, name: "Callback Requested", type: "callback", itemCount: 145, isDefault: false },
+    { id: 18, name: "Lead Form", type: "lead", itemCount: 423, isDefault: false },
+    { id: 19, name: "Junk", type: "status", itemCount: 67, isDefault: false },
+    { id: 20, name: "Whatsapp Campaign", type: "campaign", itemCount: 234, isDefault: false },
+    { id: 21, name: "Junk or Invalid lead", type: "status", itemCount: 89, isDefault: false },
+    { id: 22, name: "Sales activity form", type: "sales", itemCount: 178, isDefault: false },
+    { id: 23, name: "Purchase follow up", type: "purchase", itemCount: 123, isDefault: false },
+    { id: 24, name: "Payment awaited", type: "payment", itemCount: 234, isDefault: false },
+    { id: 25, name: "Demo completed", type: "demo", itemCount: 156, isDefault: false },
+    { id: 26, name: "Demo scheduled", type: "demo", itemCount: 267, isDefault: false },
+    { id: 27, name: "Website completed", type: "website", itemCount: 45, isDefault: false },
+    { id: 28, name: "Free trial website designing", type: "website", itemCount: 78, isDefault: false },
+    { id: 29, name: "Catalogue received", type: "catalogue", itemCount: 123, isDefault: false },
+    { id: 30, name: "Phone call activity", type: "activity", itemCount: 189, isDefault: false }
   ];
 
   const filteredForms = forms.filter(form =>
@@ -95,17 +96,34 @@ const Forms = () => {
               onClick={handleCardClick}
             >
               <CardContent className="p-4">
-                <div className="flex items-center justify-between">
+                <div className="flex items-start justify-between mb-3">
                   <div className="flex-1">
-                    <h3 className="font-medium text-gray-900 mb-1">{form.name}</h3>
-                    <span className="text-sm text-gray-500 capitalize">{form.type}</span>
+                    <div className="flex items-center gap-2 mb-2">
+                      <h3 className="font-medium text-gray-900">{form.name}</h3>
+                      {form.isDefault && (
+                        <Star className="h-4 w-4 text-yellow-500 fill-current" />
+                      )}
+                    </div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Badge variant="secondary" className="text-xs capitalize">
+                        {form.type}
+                      </Badge>
+                      {form.isDefault && (
+                        <Badge variant="outline" className="text-xs text-blue-600 border-blue-200">
+                          Default Dashboard
+                        </Badge>
+                      )}
+                    </div>
+                    <div className="text-sm text-gray-500">
+                      {form.itemCount} items
+                    </div>
                   </div>
                   
                   <Button 
                     variant="ghost" 
                     size="icon" 
-                    className="text-gray-400 hover:text-red-500 hover:bg-red-50"
-                    onClick={(e) => e.stopPropagation()} // Prevent card click when delete button is clicked
+                    className="text-gray-400 hover:text-red-500 hover:bg-red-50 flex-shrink-0"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
