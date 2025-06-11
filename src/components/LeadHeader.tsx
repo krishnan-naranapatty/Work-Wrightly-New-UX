@@ -41,16 +41,19 @@ const LeadHeader = ({ lead }: LeadHeaderProps) => {
               <CardTitle className="text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-gray-900">
                 Lead Form V2 - {lead.name}
               </CardTitle>
-              <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 mt-1 sm:mt-2 text-xs text-gray-600 space-y-0.5 sm:space-y-0">
-                <span>ID: {lead.id}</span>
-                <span className="hidden sm:inline">•</span>
-                <span>{lead.company}</span>
-                <span className="hidden sm:inline">•</span>
-                <span>{lead.city}</span>
-                <span className="hidden sm:inline">•</span>
-                <span className="break-all">{lead.email}</span>
-                <span className="hidden sm:inline">•</span>
-                <span>{lead.phone}</span>
+              <div className="text-xs text-gray-600 mt-1 space-y-0.5">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2">
+                  <span>ID: {lead.id}</span>
+                  <span className="hidden sm:inline">•</span>
+                  <span>{lead.company}</span>
+                  <span className="hidden sm:inline">•</span>
+                  <span>{lead.city}</span>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2">
+                  <span className="break-all">{lead.email}</span>
+                  <span className="hidden sm:inline">•</span>
+                  <span>{lead.phone}</span>
+                </div>
               </div>
             </div>
           </div>
