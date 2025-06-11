@@ -37,6 +37,53 @@ const LeadsTable = ({ leads }: LeadsTableProps) => {
     }
   };
 
+  const getStageColor = (stage: string) => {
+    switch (stage.toLowerCase()) {
+      case "post sales process":
+        return {
+          bgColor: "bg-blue-50",
+          borderColor: "border-l-blue-500",
+          textColor: "text-blue-700",
+          dotColor: "bg-blue-500"
+        };
+      case "payment completed":
+        return {
+          bgColor: "bg-green-50",
+          borderColor: "border-l-green-500",
+          textColor: "text-green-700",
+          dotColor: "bg-green-500"
+        };
+      case "new opportunity":
+        return {
+          bgColor: "bg-purple-50",
+          borderColor: "border-l-purple-500",
+          textColor: "text-purple-700",
+          dotColor: "bg-purple-500"
+        };
+      case "follow up":
+        return {
+          bgColor: "bg-orange-50",
+          borderColor: "border-l-orange-500",
+          textColor: "text-orange-700",
+          dotColor: "bg-orange-500"
+        };
+      case "negotiation":
+        return {
+          bgColor: "bg-yellow-50",
+          borderColor: "border-l-yellow-500",
+          textColor: "text-yellow-700",
+          dotColor: "bg-yellow-500"
+        };
+      default:
+        return {
+          bgColor: "bg-gray-50",
+          borderColor: "border-l-gray-500",
+          textColor: "text-gray-700",
+          dotColor: "bg-gray-500"
+        };
+    }
+  };
+
   const handleLeadClick = (leadId: string) => {
     navigate(`/lead/${leadId}`);
   };
@@ -56,11 +103,12 @@ const LeadsTable = ({ leads }: LeadsTableProps) => {
           
           {leads.map((lead) => {
             const progressValue = getProgressValue(lead.priority);
+            const stageColors = getStageColor(lead.stage);
             
             return (
               <div 
                 key={lead.id} 
-                className="px-4 md:px-6 py-4 border-b hover:bg-gray-50 cursor-pointer transition-colors"
+                className={`px-4 md:px-6 py-4 border-b border-l-4 hover:bg-gray-50 cursor-pointer transition-colors ${stageColors.bgColor} ${stageColors.borderColor}`}
                 onClick={() => handleLeadClick(lead.id)}
               >
                 {/* Desktop Layout */}
@@ -94,8 +142,11 @@ const LeadsTable = ({ leads }: LeadsTableProps) => {
                         <div className="text-gray-500">Notes (3)</div>
                       </div>
                       <div className="col-span-3">
-                        <div className="text-gray-900">{lead.stage}</div>
-                        <div className="text-sm text-gray-500">{lead.assignedTo}</div>
+                        <div className={`flex items-center space-x-2 ${stageColors.textColor}`}>
+                          <div className={`w-2 h-2 rounded-full ${stageColors.dotColor}`}></div>
+                          <span className="font-medium">{lead.stage}</span>
+                        </div>
+                        <div className="text-sm text-gray-500 mt-1">{lead.assignedTo}</div>
                       </div>
                     </div>
                   </div>
@@ -109,7 +160,10 @@ const LeadsTable = ({ leads }: LeadsTableProps) => {
                     </div>
                     <div className="flex-1">
                       <div className="font-medium text-gray-900">{lead.name}</div>
-                      <div className="text-sm text-gray-500">{lead.stage}</div>
+                      <div className={`flex items-center space-x-2 ${stageColors.textColor}`}>
+                        <div className={`w-2 h-2 rounded-full ${stageColors.dotColor}`}></div>
+                        <span className="text-sm font-medium">{lead.stage}</span>
+                      </div>
                     </div>
                   </div>
                   
