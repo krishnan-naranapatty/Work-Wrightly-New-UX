@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface Lead {
   id: string;
@@ -25,6 +26,27 @@ interface Lead {
 interface LeadsTableProps {
   leads: Lead[];
 }
+
+const TruncatedText = ({ text, maxLength = 20 }: { text: string; maxLength?: number }) => {
+  if (text.length <= maxLength) {
+    return <span>{text}</span>;
+  }
+
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <span className="cursor-help truncate block">
+            {text.substring(0, maxLength)}...
+          </span>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>{text}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+};
 
 const LeadsTable = ({ leads }: LeadsTableProps) => {
   const navigate = useNavigate();
@@ -128,16 +150,26 @@ const LeadsTable = ({ leads }: LeadsTableProps) => {
               >
                 {/* Desktop Layout */}
                 <div className="hidden md:grid grid-cols-12 gap-4 items-center">
-                  <div className="col-span-3 flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                  <div className="col-span-3 flex items-center space-x-3 min-h-[80px]">
+                    <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
                       {lead.name.split(' ').map(n => n[0]).join('').toUpperCase()}
                     </div>
-                    <div>
-                      <div className="font-medium text-gray-900">{lead.name}</div>
-                      <div className="text-sm text-gray-500">{lead.email}</div>
-                      <div className="text-sm text-gray-500">{lead.phone}</div>
-                      <div className="text-sm text-gray-500">{lead.city}</div>
-                      <div className="text-sm text-gray-500">last contact: {lead.updatedAt}</div>
+                    <div className="min-w-0 flex-1">
+                      <div className="font-medium text-gray-900 truncate">
+                        <TruncatedText text={lead.name} maxLength={15} />
+                      </div>
+                      <div className="text-sm text-gray-500 truncate">
+                        <TruncatedText text={lead.email} maxLength={20} />
+                      </div>
+                      <div className="text-sm text-gray-500 truncate">
+                        <TruncatedText text={lead.phone} maxLength={12} />
+                      </div>
+                      <div className="text-sm text-gray-500 truncate">
+                        <TruncatedText text={lead.city} maxLength={10} />
+                      </div>
+                      <div className="text-sm text-gray-500 truncate">
+                        last contact: {lead.updatedAt}
+                      </div>
                     </div>
                   </div>
                   
@@ -159,12 +191,16 @@ const LeadsTable = ({ leads }: LeadsTableProps) => {
                         <div className="text-gray-500">Live meeting (1)</div>
                         <div className="text-gray-500">Notes (3)</div>
                       </div>
-                      <div className="col-span-3">
+                      <div className="col-span-3 min-w-0">
                         <div className={`flex items-center space-x-2 ${stageColors.textColor}`}>
-                          <div className={`w-2 h-2 rounded-full ${stageColors.dotColor}`}></div>
-                          <span className="font-medium">{lead.stage}</span>
+                          <div className={`w-2 h-2 rounded-full ${stageColors.dotColor} flex-shrink-0`}></div>
+                          <span className="font-medium truncate">
+                            <TruncatedText text={lead.stage} maxLength={20} />
+                          </span>
                         </div>
-                        <div className="text-sm text-gray-500 mt-1">{lead.assignedTo}</div>
+                        <div className="text-sm text-gray-500 mt-1 truncate">
+                          <TruncatedText text={lead.assignedTo} maxLength={15} />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -173,17 +209,27 @@ const LeadsTable = ({ leads }: LeadsTableProps) => {
                 {/* Mobile Layout */}
                 <div className="md:hidden space-y-3">
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                    <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
                       {lead.name.split(' ').map(n => n[0]).join('').toUpperCase()}
                     </div>
-                    <div className="flex-1">
-                      <div className="font-medium text-gray-900">{lead.name}</div>
-                      <div className="text-sm text-gray-500">{lead.email}</div>
-                      <div className="text-sm text-gray-500">{lead.phone}</div>
-                      <div className="text-sm text-gray-500">{lead.city}</div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium text-gray-900 truncate">
+                        <TruncatedText text={lead.name} maxLength={20} />
+                      </div>
+                      <div className="text-sm text-gray-500 truncate">
+                        <TruncatedText text={lead.email} maxLength={25} />
+                      </div>
+                      <div className="text-sm text-gray-500 truncate">
+                        <TruncatedText text={lead.phone} maxLength={15} />
+                      </div>
+                      <div className="text-sm text-gray-500 truncate">
+                        <TruncatedText text={lead.city} maxLength={15} />
+                      </div>
                       <div className={`flex items-center space-x-2 ${stageColors.textColor}`}>
-                        <div className={`w-2 h-2 rounded-full ${stageColors.dotColor}`}></div>
-                        <span className="text-sm font-medium">{lead.stage}</span>
+                        <div className={`w-2 h-2 rounded-full ${stageColors.dotColor} flex-shrink-0`}></div>
+                        <span className="text-sm font-medium truncate">
+                          <TruncatedText text={lead.stage} maxLength={20} />
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -207,7 +253,9 @@ const LeadsTable = ({ leads }: LeadsTableProps) => {
                   </div>
                   
                   <div className="text-sm">
-                    <div className="text-gray-500">Assigned to: {lead.assignedTo}</div>
+                    <div className="text-gray-500 truncate">
+                      Assigned to: <TruncatedText text={lead.assignedTo} maxLength={15} />
+                    </div>
                     <div className="text-gray-500">Last contact: {lead.updatedAt}</div>
                   </div>
                 </div>
