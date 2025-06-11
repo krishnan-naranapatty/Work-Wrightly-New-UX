@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Header from "@/components/Header";
 import StatsSection from "@/components/StatsSection";
@@ -5,6 +6,8 @@ import FilterSection from "@/components/FilterSection";
 import LeadsTable from "@/components/LeadsTable";
 import SidebarCards from "@/components/SidebarCards";
 import RightSidebar from "@/components/RightSidebar";
+import { Button } from "@/components/ui/button";
+import { Plus, Download, Upload } from "lucide-react";
 
 const Index = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -110,6 +113,19 @@ const Index = () => {
         <StatsSection />
         <SidebarCards />
         <FilterSection />
+
+        {/* Action buttons above the table */}
+        <div className="mb-4 flex flex-wrap gap-2">
+          <Button className="bg-green-500 hover:bg-green-600 text-white">
+            <Plus className="mr-1 h-4 w-4" /> Add
+          </Button>
+          <Button variant="outline" className="bg-white">
+            <Upload className="mr-1 h-4 w-4" /> Upload
+          </Button>
+          <Button variant="outline" className="bg-white">
+            <Download className="mr-1 h-4 w-4" /> Download
+          </Button>
+        </div>
 
         {/* Desktop Layout - Side by side */}
         <div className="hidden lg:flex gap-6">

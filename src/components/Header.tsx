@@ -1,5 +1,4 @@
-
-import { Plus, Download, Settings, Upload, User, Menu } from "lucide-react";
+import { Menu, Settings, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -45,15 +44,7 @@ const Header = () => {
               </SheetContent>
             </Sheet>
             
-            <Button className="bg-green-500 hover:bg-green-600 text-white">
-              Add
-            </Button>
-            <Button variant="ghost" size="icon" className="text-white hover:bg-slate-600">
-              <Upload className="h-4 w-4" />
-            </Button>
-            <Button variant="ghost" size="icon" className="text-white hover:bg-slate-600">
-              <Download className="h-4 w-4" />
-            </Button>
+            {/* Settings and user profile - keeping these in the header */}
             <Button variant="ghost" size="icon" className="text-white hover:bg-slate-600">
               <Settings className="h-4 w-4" />
             </Button>
