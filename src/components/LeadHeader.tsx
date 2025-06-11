@@ -28,20 +28,20 @@ interface LeadHeaderProps {
 
 const LeadHeader = ({ lead }: LeadHeaderProps) => {
   return (
-    <Card className="mb-6">
-      <CardHeader>
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
-          <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
-            <Avatar className="h-12 w-12 sm:h-16 sm:w-16 bg-blue-100 mx-auto sm:mx-0">
-              <AvatarFallback className="bg-blue-600 text-white font-semibold text-base sm:text-lg">
+    <Card className="mb-4 lg:mb-6">
+      <CardHeader className="p-4 lg:p-6">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-3 lg:space-y-0">
+          <div className="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-3">
+            <Avatar className="h-10 w-10 sm:h-12 sm:w-12 bg-blue-100 mx-auto sm:mx-0">
+              <AvatarFallback className="bg-blue-600 text-white font-semibold text-sm sm:text-base">
                 {lead.name.split(' ').map(n => n[0]).join('').toUpperCase()}
               </AvatarFallback>
             </Avatar>
             <div className="text-center sm:text-left">
-              <CardTitle className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900">
+              <CardTitle className="text-base sm:text-lg lg:text-xl font-bold text-gray-900">
                 Lead Form V2 - {lead.name}
               </CardTitle>
-              <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 mt-2 text-xs sm:text-sm text-gray-600 space-y-1 sm:space-y-0">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-3 mt-1 text-xs sm:text-sm text-gray-600 space-y-0.5 sm:space-y-0">
                 <span>ID: {lead.id}</span>
                 <span className="hidden sm:inline">•</span>
                 <span>{lead.company}</span>
