@@ -10,6 +10,7 @@ interface Lead {
   company: string;
   email: string;
   phone: string;
+  city: string;
   status: string;
   stage: string;
   source: string;
@@ -133,6 +134,7 @@ const LeadsTable = ({ leads }: LeadsTableProps) => {
                     </div>
                     <div>
                       <div className="font-medium text-gray-900">{lead.name}</div>
+                      <div className="text-sm text-gray-500">{lead.city}</div>
                       <div className="text-sm text-gray-500">last contact: {lead.updatedAt}</div>
                     </div>
                   </div>
@@ -174,6 +176,7 @@ const LeadsTable = ({ leads }: LeadsTableProps) => {
                     </div>
                     <div className="flex-1">
                       <div className="font-medium text-gray-900">{lead.name}</div>
+                      <div className="text-sm text-gray-500">{lead.city}</div>
                       <div className={`flex items-center space-x-2 ${stageColors.textColor}`}>
                         <div className={`w-2 h-2 rounded-full ${stageColors.dotColor}`}></div>
                         <span className="text-sm font-medium">{lead.stage}</span>
