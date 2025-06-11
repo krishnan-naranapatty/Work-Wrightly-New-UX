@@ -74,6 +74,20 @@ const LeadsTable = ({ leads }: LeadsTableProps) => {
           textColor: "text-yellow-700",
           dotColor: "bg-yellow-500"
         };
+      case "not interested":
+        return {
+          bgColor: "bg-red-50",
+          borderColor: "border-l-red-500",
+          textColor: "text-red-700",
+          dotColor: "bg-red-500"
+        };
+      case "answered and call back":
+        return {
+          bgColor: "bg-teal-50",
+          borderColor: "border-l-teal-500",
+          textColor: "text-teal-700",
+          dotColor: "bg-teal-500"
+        };
       default:
         return {
           bgColor: "bg-gray-50",
