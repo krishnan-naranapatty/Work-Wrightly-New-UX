@@ -1,4 +1,3 @@
-
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import Header from "@/components/Header";
@@ -16,6 +15,7 @@ const LeadDetails = () => {
     company: "Avasar-NX",
     email: "haren@gmail.com",
     phone: "9594049055",
+    city: "Mumbai",
     status: "In Progress",
     stage: "Post Sales Process",
     source: "New Opportunity",

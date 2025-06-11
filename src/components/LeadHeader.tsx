@@ -10,6 +10,7 @@ interface Lead {
   company: string;
   email: string;
   phone: string;
+  city: string;
   status: string;
   stage: string;
   source: string;
@@ -44,6 +45,8 @@ const LeadHeader = ({ lead }: LeadHeaderProps) => {
                 <span>ID: {lead.id}</span>
                 <span className="hidden sm:inline">•</span>
                 <span>{lead.company}</span>
+                <span className="hidden sm:inline">•</span>
+                <span>{lead.city}</span>
                 <span className="hidden sm:inline">•</span>
                 <span className="break-all">{lead.email}</span>
                 <span className="hidden sm:inline">•</span>
