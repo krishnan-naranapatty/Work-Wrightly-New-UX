@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Header from "@/components/Header";
 import StatsSection from "@/components/StatsSection";
@@ -236,15 +235,9 @@ const Index = () => {
         <Header />
       </div>
 
-      {/* Sticky Stats Section */}
-      <div className="sticky top-16 z-40 bg-gray-100 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <StatsSection />
-        </div>
-      </div>
-
       {/* Scrollable Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <StatsSection />
         <SidebarCards />
         
         {/* Combined filter section and action buttons */}
