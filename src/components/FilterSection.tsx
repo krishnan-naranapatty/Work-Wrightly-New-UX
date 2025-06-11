@@ -3,12 +3,18 @@ import { Filter, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import FilterDialog from "./FilterDialog";
 
 interface FilterSectionProps {
   className?: string;
 }
 
 const FilterSection = ({ className = "" }: FilterSectionProps) => {
+  const handleApplyFilters = (filters: any) => {
+    console.log("Applied filters:", filters);
+    // Here you would typically update the leads table with the applied filters
+  };
+
   return (
     <div className={`flex flex-wrap items-center gap-3 ${className}`}>
       <Select>
@@ -22,10 +28,12 @@ const FilterSection = ({ className = "" }: FilterSectionProps) => {
         </SelectContent>
       </Select>
       
-      <Button variant="outline" size="sm" className="flex items-center gap-2">
-        <Filter className="h-4 w-4" />
-        Filter
-      </Button>
+      <FilterDialog onApplyFilters={handleApplyFilters}>
+        <Button variant="outline" size="sm" className="flex items-center gap-2">
+          <Filter className="h-4 w-4" />
+          Filter
+        </Button>
+      </FilterDialog>
 
       <div className="relative flex-1 max-w-md">
         <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
