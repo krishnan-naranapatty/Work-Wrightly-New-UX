@@ -231,10 +231,20 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <Header />
+      {/* Sticky Header */}
+      <div className="sticky top-0 z-50">
+        <Header />
+      </div>
 
+      {/* Sticky Stats Section */}
+      <div className="sticky top-16 z-40 bg-gray-100 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <StatsSection />
+        </div>
+      </div>
+
+      {/* Scrollable Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <StatsSection />
         <SidebarCards />
         
         {/* Combined filter section and action buttons */}
