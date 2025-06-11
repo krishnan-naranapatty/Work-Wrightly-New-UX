@@ -41,19 +41,8 @@ const LeadHeader = ({ lead }: LeadHeaderProps) => {
               <CardTitle className="text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-gray-900">
                 Lead Form V2 - {lead.name}
               </CardTitle>
-              <div className="text-xs text-gray-600 mt-1 space-y-0.5">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2">
-                  <span>ID: {lead.id}</span>
-                  <span className="hidden sm:inline">•</span>
-                  <span>{lead.company}</span>
-                  <span className="hidden sm:inline">•</span>
-                  <span>{lead.city}</span>
-                </div>
-                <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2">
-                  <span className="break-all">{lead.email}</span>
-                  <span className="hidden sm:inline">•</span>
-                  <span>{lead.phone}</span>
-                </div>
+              <div className="text-xs text-gray-600 mt-1 break-words">
+                ID: {lead.id}, {lead.company}, {lead.city}, {lead.email}, {lead.phone}
               </div>
             </div>
           </div>
