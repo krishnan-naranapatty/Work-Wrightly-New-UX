@@ -1,4 +1,3 @@
-
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import Header from "@/components/Header";
@@ -124,11 +123,11 @@ const LeadDetails = () => {
         <Header />
       </div>
       
-      {/* Lead Header - sticky only on desktop */}
-      <div className="lg:sticky lg:top-16 z-40 bg-gray-100">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-3 lg:py-6">
+      {/* Sticky Lead Header */}
+      <div className="sticky top-16 z-40 bg-gray-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           {/* Back Navigation */}
-          <div className="mb-3 lg:mb-6">
+          <div className="mb-6">
             <Link to="/" className="inline-flex items-center text-blue-600 hover:text-blue-800">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Dashboard
