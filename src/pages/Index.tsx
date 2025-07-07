@@ -7,11 +7,15 @@ import SidebarCards from "@/components/SidebarCards";
 import RightSidebar from "@/components/RightSidebar";
 import { Button } from "@/components/ui/button";
 import { Plus, Download, Upload } from "lucide-react";
+import { DateFilterType } from "@/components/DateFilter";
+import { getDateRange, isDateInRange } from "@/utils/dateUtils";
 
 const Index = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [showFilters, setShowFilters] = useState(false);
+  const [dateFilter, setDateFilter] = useState<DateFilterType>("today");
+  const [customDateRange, setCustomDateRange] = useState<{ start?: Date; end?: Date }>({});
 
   const leads = [
     {
@@ -220,13 +224,46 @@ const Index = () => {
     }
   ];
 
-  const filteredLeads = leads.filter(lead => {
+  const handleDateFilterChange = (filter: DateFilterType, startDate?: Date, endDate?: Date) => {
+    setDateFilter(filter);
+    if (filter === "custom" && startDate && endDate) {
+      setCustomDateRange({ start: startDate, end: endDate });
+    } else {
+      setCustomDateRange({});
+    }
+  };
+
+  const getFilteredLeadsByDate = () => {
+    const { start, end } = getDateRange(dateFilter, customDateRange.start, customDateRange.end);
+    
+    return leads.filter(lead => {
+      return isDateInRange(lead.createdAt, start, end);
+    });
+  };
+
+  const filteredLeadsByDate = getFilteredLeadsByDate();
+
+  const filteredLeads = filteredLeadsByDate.filter(lead => {
     const matchesSearch = lead.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          lead.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          lead.email.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = selectedStatus === "all" || lead.status === selectedStatus;
     return matchesSearch && matchesStatus;
   });
+
+  // Calculate filtered stats
+  const filteredStats = {
+    newLeads: filteredLeadsByDate.filter(lead => {
+      const createdDate = new Date(lead.createdAt);
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      return createdDate > yesterday;
+    }).length,
+    totalLeads: filteredLeadsByDate.length,
+    leadClosure: filteredLeadsByDate.filter(lead => lead.stage === "Lead Closure" || lead.status === "Completed").length,
+    paymentInitiated: filteredLeadsByDate.filter(lead => lead.stage === "Payment Initiated").length,
+    paymentCompleted: filteredLeadsByDate.filter(lead => lead.stage === "Payment completed").length,
+  };
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -237,12 +274,21 @@ const Index = () => {
 
       {/* Scrollable Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <StatsSection />
+        <StatsSection 
+          newLeads={filteredStats.newLeads}
+          totalLeads={filteredStats.totalLeads}
+          leadClosure={filteredStats.leadClosure}
+          paymentInitiated={filteredStats.paymentInitiated}
+          paymentCompleted={filteredStats.paymentCompleted}
+        />
         <SidebarCards />
         
         {/* Combined filter section and action buttons */}
         <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
-          <FilterSection className="flex-grow" />
+          <FilterSection 
+            className="flex-grow" 
+            onDateFilterChange={handleDateFilterChange}
+          />
           
           <div className="flex flex-wrap gap-2">
             <Button className="bg-green-500 hover:bg-green-600 text-white">

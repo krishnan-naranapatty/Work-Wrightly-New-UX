@@ -4,15 +4,24 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import FilterDialog from "./FilterDialog";
+import DateFilter, { DateFilterType } from "./DateFilter";
 
 interface FilterSectionProps {
   className?: string;
+  onDateFilterChange?: (filter: DateFilterType, startDate?: Date, endDate?: Date) => void;
 }
 
-const FilterSection = ({ className = "" }: FilterSectionProps) => {
+const FilterSection = ({ className = "", onDateFilterChange }: FilterSectionProps) => {
   const handleApplyFilters = (filters: any) => {
     console.log("Applied filters:", filters);
     // Here you would typically update the leads table with the applied filters
+  };
+
+  const handleDateFilterChange = (filter: DateFilterType, startDate?: Date, endDate?: Date) => {
+    console.log("Date filter changed:", filter, startDate, endDate);
+    if (onDateFilterChange) {
+      onDateFilterChange(filter, startDate, endDate);
+    }
   };
 
   return (
@@ -27,6 +36,8 @@ const FilterSection = ({ className = "" }: FilterSectionProps) => {
           <SelectItem value="support">Support roles</SelectItem>
         </SelectContent>
       </Select>
+      
+      <DateFilter onFilterChange={handleDateFilterChange} />
       
       <FilterDialog onApplyFilters={handleApplyFilters}>
         <Button variant="outline" size="sm" className="flex items-center gap-2">
