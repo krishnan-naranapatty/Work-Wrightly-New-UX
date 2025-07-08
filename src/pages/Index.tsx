@@ -289,7 +289,7 @@ const Index = () => {
             className="flex-grow" 
           />
           
-          <div className="flex flex-wrap items-end gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <Button className="bg-green-500 hover:bg-green-600 text-white">
               <Plus className="mr-1 h-4 w-4" /> Add
             </Button>
@@ -300,8 +300,8 @@ const Index = () => {
               <Download className="mr-1 h-4 w-4" /> Download
             </Button>
             
-            <div className="flex flex-col gap-1 ml-4">
-              <span className="text-xs font-medium text-muted-foreground">Page-wide Date Filter</span>
+            <div className="flex items-center gap-2 ml-4">
+              <span className="text-sm font-medium text-muted-foreground whitespace-nowrap">Page-wide Date Filter:</span>
               <DateFilter onFilterChange={handleDateFilterChange} />
             </div>
           </div>
