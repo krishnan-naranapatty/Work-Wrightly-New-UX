@@ -308,8 +308,10 @@ const Index = () => {
         </div>
 
         {/* Desktop Layout - Side by side */}
-        <div className="hidden lg:flex gap-6">
-          <LeadsTable leads={filteredLeads} />
+        <div className="hidden lg:flex gap-6 items-start">
+          <div className="flex-1">
+            <LeadsTable leads={filteredLeads} />
+          </div>
           <RightSidebar />
         </div>
 
