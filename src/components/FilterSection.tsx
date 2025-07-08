@@ -37,7 +37,10 @@ const FilterSection = ({ className = "", onDateFilterChange }: FilterSectionProp
         </SelectContent>
       </Select>
       
-      <DateFilter onFilterChange={handleDateFilterChange} />
+      <div className="flex flex-col gap-1">
+        <span className="text-xs font-medium text-muted-foreground">Page-wide Date Filter</span>
+        <DateFilter onFilterChange={handleDateFilterChange} />
+      </div>
       
       <FilterDialog onApplyFilters={handleApplyFilters}>
         <Button variant="outline" size="sm" className="flex items-center gap-2">
