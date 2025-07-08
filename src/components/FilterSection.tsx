@@ -37,11 +37,6 @@ const FilterSection = ({ className = "", onDateFilterChange }: FilterSectionProp
         </SelectContent>
       </Select>
       
-      <div className="flex flex-col gap-1">
-        <span className="text-xs font-medium text-muted-foreground">Page-wide Date Filter</span>
-        <DateFilter onFilterChange={handleDateFilterChange} />
-      </div>
-      
       <FilterDialog onApplyFilters={handleApplyFilters}>
         <Button variant="outline" size="sm" className="flex items-center gap-2">
           <Filter className="h-4 w-4" />
@@ -55,6 +50,11 @@ const FilterSection = ({ className = "", onDateFilterChange }: FilterSectionProp
           placeholder="Search a lead..."
           className="pl-10 bg-white"
         />
+      </div>
+
+      <div className="flex flex-col gap-1 ml-auto">
+        <span className="text-xs font-medium text-muted-foreground">Page-wide Date Filter</span>
+        <DateFilter onFilterChange={handleDateFilterChange} />
       </div>
     </div>
   );
