@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Calendar, ChevronDown } from "lucide-react";
+import { Calendar, ChevronDown, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import {
@@ -65,11 +65,17 @@ const DateFilter = ({ onFilterChange, className }: DateFilterProps) => {
 
   return (
     <div className={cn("relative", className)}>
-      {/* Primary Date Filter Label */}
-      <div className="mb-2">
-        <span className="text-sm font-semibold text-blue-700 uppercase tracking-wide">
-          Primary Filter
-        </span>
+      {/* Page-wide Filter Header */}
+      <div className="mb-3 flex items-center gap-2">
+        <Globe className="h-4 w-4 text-blue-600" />
+        <div>
+          <span className="text-sm font-bold text-blue-700 uppercase tracking-wide">
+            Page Filter
+          </span>
+          <p className="text-xs text-gray-600 mt-0.5">
+            Applies to all data, stats, and tables on this page
+          </p>
+        </div>
       </div>
       
       <DropdownMenu>
