@@ -64,21 +64,41 @@ const DateFilter = ({ onFilterChange, className }: DateFilterProps) => {
   };
 
   return (
-    <div className={className}>
+    <div className={cn("relative", className)}>
+      {/* Primary Date Filter Label */}
+      <div className="mb-2">
+        <span className="text-sm font-semibold text-blue-700 uppercase tracking-wide">
+          Primary Filter
+        </span>
+      </div>
+      
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" className="flex items-center gap-2">
-            <Calendar className="h-4 w-4" />
-            {getFilterLabel()}
-            <ChevronDown className="h-4 w-4" />
+          <Button 
+            variant="outline" 
+            className="h-12 px-6 text-base font-medium bg-blue-50 border-2 border-blue-200 hover:bg-blue-100 hover:border-blue-300 transition-all duration-200 shadow-md hover:shadow-lg"
+          >
+            <Calendar className="h-5 w-5 text-blue-600 mr-3" />
+            <span className="text-gray-700 font-semibold">
+              {getFilterLabel()}
+            </span>
+            <ChevronDown className="h-4 w-4 ml-3 text-blue-600" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="start">
+        <DropdownMenuContent 
+          align="start" 
+          className="w-56 bg-white border-2 border-blue-200 shadow-xl z-50"
+        >
           {dateFilterOptions.map((option) => (
             <DropdownMenuItem
               key={option.value}
               onClick={() => handleFilterSelect(option.value)}
-              className={selectedFilter === option.value ? "bg-accent" : ""}
+              className={cn(
+                "cursor-pointer px-4 py-3 text-sm font-medium transition-colors",
+                selectedFilter === option.value 
+                  ? "bg-blue-100 text-blue-700 font-semibold" 
+                  : "hover:bg-gray-50"
+              )}
             >
               {option.label}
             </DropdownMenuItem>
@@ -91,10 +111,10 @@ const DateFilter = ({ onFilterChange, className }: DateFilterProps) => {
           <PopoverTrigger asChild>
             <div />
           </PopoverTrigger>
-          <PopoverContent className="w-auto p-0" align="start">
+          <PopoverContent className="w-auto p-0 bg-white border-2 border-blue-200 shadow-xl z-50" align="start">
             <div className="p-4 space-y-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium">Start Date</label>
+                <label className="text-sm font-medium text-gray-700">Start Date</label>
                 <CalendarComponent
                   mode="single"
                   selected={customStartDate}
@@ -103,7 +123,7 @@ const DateFilter = ({ onFilterChange, className }: DateFilterProps) => {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium">End Date</label>
+                <label className="text-sm font-medium text-gray-700">End Date</label>
                 <CalendarComponent
                   mode="single"
                   selected={customEndDate}
@@ -111,7 +131,10 @@ const DateFilter = ({ onFilterChange, className }: DateFilterProps) => {
                   className={cn("p-3 pointer-events-auto")}
                 />
               </div>
-              <Button onClick={handleCustomDateApply} className="w-full">
+              <Button 
+                onClick={handleCustomDateApply} 
+                className="w-full bg-blue-600 hover:bg-blue-700"
+              >
                 Apply Custom Range
               </Button>
             </div>

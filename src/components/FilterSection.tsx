@@ -25,33 +25,39 @@ const FilterSection = ({ className = "", onDateFilterChange }: FilterSectionProp
   };
 
   return (
-    <div className={`flex flex-wrap items-center gap-3 ${className}`}>
-      <Select>
-        <SelectTrigger className="w-48">
-          <SelectValue placeholder="View leads for all users" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="all">View leads for all users</SelectItem>
-          <SelectItem value="developer">Developer roles</SelectItem>
-          <SelectItem value="support">Support roles</SelectItem>
-        </SelectContent>
-      </Select>
+    <div className={`space-y-4 ${className}`}>
+      {/* Primary Date Filter - Prominent positioning */}
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-200">
+        <DateFilter onFilterChange={handleDateFilterChange} />
+      </div>
       
-      <DateFilter onFilterChange={handleDateFilterChange} />
-      
-      <FilterDialog onApplyFilters={handleApplyFilters}>
-        <Button variant="outline" size="sm" className="flex items-center gap-2">
-          <Filter className="h-4 w-4" />
-          Filter
-        </Button>
-      </FilterDialog>
+      {/* Secondary Filters */}
+      <div className="flex flex-wrap items-center gap-3">
+        <Select>
+          <SelectTrigger className="w-48">
+            <SelectValue placeholder="View leads for all users" />
+          </SelectTrigger>
+          <SelectContent className="bg-white z-50">
+            <SelectItem value="all">View leads for all users</SelectItem>
+            <SelectItem value="developer">Developer roles</SelectItem>
+            <SelectItem value="support">Support roles</SelectItem>
+          </SelectContent>
+        </Select>
+        
+        <FilterDialog onApplyFilters={handleApplyFilters}>
+          <Button variant="outline" size="sm" className="flex items-center gap-2">
+            <Filter className="h-4 w-4" />
+            Filter
+          </Button>
+        </FilterDialog>
 
-      <div className="relative flex-1 max-w-md">
-        <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
-        <Input
-          placeholder="Search a lead..."
-          className="pl-10 bg-white"
-        />
+        <div className="relative flex-1 max-w-md">
+          <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+          <Input
+            placeholder="Search a lead..."
+            className="pl-10 bg-white"
+          />
+        </div>
       </div>
     </div>
   );
