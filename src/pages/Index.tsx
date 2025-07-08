@@ -14,7 +14,7 @@ const Index = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [showFilters, setShowFilters] = useState(false);
-  const [dateFilter, setDateFilter] = useState<DateFilterType>("today");
+  const [dateFilter, setDateFilter] = useState<DateFilterType>("all");
   const [customDateRange, setCustomDateRange] = useState<{ start?: Date; end?: Date }>({});
 
   const leads = [

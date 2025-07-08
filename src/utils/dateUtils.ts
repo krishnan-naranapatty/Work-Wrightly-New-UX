@@ -6,6 +6,12 @@ export const getDateRange = (filter: DateFilterType, customStart?: Date, customE
   const now = new Date();
   
   switch (filter) {
+    case "all":
+      // Return a very wide date range to show all records
+      return {
+        start: new Date("1900-01-01"),
+        end: new Date("2100-12-31")
+      };
     case "today":
       return {
         start: startOfDay(now),
@@ -39,8 +45,8 @@ export const getDateRange = (filter: DateFilterType, customStart?: Date, customE
       };
     default:
       return {
-        start: startOfDay(now),
-        end: endOfDay(now)
+        start: new Date("1900-01-01"),
+        end: new Date("2100-12-31")
       };
   }
 };

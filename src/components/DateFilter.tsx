@@ -17,7 +17,7 @@ import {
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 
-export type DateFilterType = "today" | "wtd" | "mtd" | "ytd" | "custom";
+export type DateFilterType = "all" | "today" | "wtd" | "mtd" | "ytd" | "custom";
 
 interface DateFilterProps {
   onFilterChange: (filter: DateFilterType, startDate?: Date, endDate?: Date) => void;
@@ -25,12 +25,13 @@ interface DateFilterProps {
 }
 
 const DateFilter = ({ onFilterChange, className }: DateFilterProps) => {
-  const [selectedFilter, setSelectedFilter] = useState<DateFilterType>("today");
+  const [selectedFilter, setSelectedFilter] = useState<DateFilterType>("all");
   const [customStartDate, setCustomStartDate] = useState<Date>();
   const [customEndDate, setCustomEndDate] = useState<Date>();
   const [showCustomCalendar, setShowCustomCalendar] = useState(false);
 
   const dateFilterOptions = [
+    { value: "all" as const, label: "Show All" },
     { value: "today" as const, label: "Today" },
     { value: "wtd" as const, label: "WTD" },
     { value: "mtd" as const, label: "MTD" },
@@ -59,7 +60,7 @@ const DateFilter = ({ onFilterChange, className }: DateFilterProps) => {
     if (selectedFilter === "custom" && customStartDate && customEndDate) {
       return `${format(customStartDate, "MMM dd")} - ${format(customEndDate, "MMM dd")}`;
     }
-    return option?.label || "Today";
+    return option?.label || "Show All";
   };
 
   return (
