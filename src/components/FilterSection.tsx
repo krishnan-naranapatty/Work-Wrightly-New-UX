@@ -51,11 +51,6 @@ const FilterSection = ({ className = "", onDateFilterChange }: FilterSectionProp
           className="pl-10 bg-white"
         />
       </div>
-
-      <div className="flex flex-col gap-1 ml-auto">
-        <span className="text-xs font-medium text-muted-foreground">Page-wide Date Filter</span>
-        <DateFilter onFilterChange={handleDateFilterChange} />
-      </div>
     </div>
   );
 };

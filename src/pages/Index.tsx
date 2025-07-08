@@ -7,7 +7,7 @@ import SidebarCards from "@/components/SidebarCards";
 import RightSidebar from "@/components/RightSidebar";
 import { Button } from "@/components/ui/button";
 import { Plus, Download, Upload } from "lucide-react";
-import { DateFilterType } from "@/components/DateFilter";
+import DateFilter, { DateFilterType } from "@/components/DateFilter";
 import { getDateRange, isDateInRange } from "@/utils/dateUtils";
 
 const Index = () => {
@@ -287,10 +287,9 @@ const Index = () => {
         <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
           <FilterSection 
             className="flex-grow" 
-            onDateFilterChange={handleDateFilterChange}
           />
           
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap items-end gap-2">
             <Button className="bg-green-500 hover:bg-green-600 text-white">
               <Plus className="mr-1 h-4 w-4" /> Add
             </Button>
@@ -300,6 +299,11 @@ const Index = () => {
             <Button variant="outline" className="bg-white">
               <Download className="mr-1 h-4 w-4" /> Download
             </Button>
+            
+            <div className="flex flex-col gap-1 ml-4">
+              <span className="text-xs font-medium text-muted-foreground">Page-wide Date Filter</span>
+              <DateFilter onFilterChange={handleDateFilterChange} />
+            </div>
           </div>
         </div>
 
